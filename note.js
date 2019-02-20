@@ -1,7 +1,5 @@
 const fs = require('fs')
 
-console.log('Starting note.js')
-
 const fetchNotes = () => {
 	try {
 		const notesJSON = fs.readFileSync('notes-data.json')
@@ -48,17 +46,22 @@ const deleteNote = (title) => {
 	saveNotes(filteredNotes)
 
 	return notes.length !== filteredNotes.length
-
-	// 어? splice를 사용할 필요가 없..네? title과 동일하지 않은 것 만 return 하면 되니까?
 }
 
 const getAll = () => {
-	console.log('All notes listed')
+	return fetchNotes()
+}
+
+const logNote = (title, body) => {
+	console.log(`--`)
+	console.log(`Title: ${title}`)
+	console.log(`Content: ${body}`)
 }
 
 module.exports = {
 	addNote,
 	readNote,
 	deleteNote,
-	getAll
+	getAll,
+	logNote
 }
